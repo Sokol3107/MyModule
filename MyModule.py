@@ -31,3 +31,5 @@ def plot_res(hist, max_line=False, max_stable_line=None, main_metric=None, print
                    label=f'Max stable {main_metric}: {avg_acc}%', colors='r')
     plt.legend()
     plt.show()
+
+x = 100
