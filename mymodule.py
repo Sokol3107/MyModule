@@ -2,15 +2,20 @@ from matplotlib import pyplot as plt
 import numpy as np
 
 # Функция для отрисовки результатов
-def plot_res(hist, max_line=False, max_stable_line=None, main_metric=None, print_loss=False, figsize=(8, 6)):
+def plot_res(hist, max_line=False, max_stable_line=False, main_metric=None, print_loss=False, print_metrics=None, figsize=(8, 6)):
     plt.figure(figsize=figsize)
 
     keys = hist.history.keys()
     keys = list(keys)
 
     if not print_loss:
-        keys.remove('loss')
-        keys.remove('val_loss')
+        if 'loss' in keys:
+            keys.remove('loss')
+        if 'val_loss' in keys:
+            keys.remove('val_loss')
+            
+    if print_metrics:
+        keys = print_metrics
 
     for k in keys:
         plt.plot(hist.history[k], label=k)
